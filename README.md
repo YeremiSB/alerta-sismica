@@ -4,11 +4,33 @@ App de Android hecha en Godot 4 que usa el **acelerómetro del teléfono** para 
 sacudidas: cuando la magnitud supera un umbral, suena una sirena, vibra el móvil y aparece un
 botón para avisar por SMS a un contacto guardado.
 
-> **Aviso honesto:** esto **no** detecta sismos por red sísmica ni avisa de un terremoto que
-> ocurre a 100 km. Detecta que *tu* teléfono se está moviendo. Sirve como alarma local de
-> sacudida, como proyecto de aprendizaje, no como sistema de alerta temprana.
+Nació como **proyecto escolar de innovación tecnológica** (FENCYT 2026, Categoría E) en la
+I.E.P. La Salle Quillabamba, con la idea de aprovechar un sensor que ya trae cualquier celular
+en vez de depender de sismógrafos caros.
+
+> **Aviso honesto:** esto **no** predice sismos ni consulta ninguna red sísmica. Detecta que
+> *tu* teléfono se está moviendo. Sirve como alarma local de sacudida y como proyecto de
+> aprendizaje, no como sistema de alerta temprana.
 
 ---
+
+## La idea científica
+
+Un sismo genera dos tipos de ondas, una tras otra:
+
+- **Ondas P** (primarias): llegan primero, viajan más rápido y apenas se sienten.
+- **Ondas S** (secundarias): llegan después y son las que producen la sacudida destructiva.
+
+La distancia entre una y otra puede ser de segundos, y ahí está la promesa del proyecto: si
+detectas el inicio de las P, puedes avisar antes de que llegue lo fuerte. El sensor que lo haría
+posible es el **acelerómetro MEMS** que casi todo smartphone trae de fábrica, con una precisión
+típica de ±0.01 a ±0.05 m/s².
+
+**Dónde se rompe la promesa:** el informe describe "detección de ondas P", pero el código actual
+no lo hace. `main.gd` solo calcula `accel.length() - 9.8` y lo compara contra un umbral fijo.
+Ese cálculo detecta *cualquier* aceleración —caminar, correr, un golpe en la mesa—, no la firma
+de una onda P. Distinguirla requiere análisis de frecuencia o forma de onda, y es el trabajo
+técnico más interesante que queda pendiente.
 
 ## Estado
 
@@ -20,7 +42,8 @@ botón para avisar por SMS a un contacto guardado.
 | Compilado | **No.** `export_presets.cfg` existe pero nunca se exportó; no hay APK |
 | Probado en dispositivo | **No** |
 | Tests | Ninguno |
-| Licencia | Sin definir todavía |
+| Validación experimental | **Tabla vacía.** Planteada en el informe, sin ejecutar |
+| Licencia | Sin definir |
 
 ## Cómo funciona
 
@@ -33,6 +56,9 @@ botón para avisar por SMS a un contacto guardado.
 5. `configuracion.gd` guarda el número de contacto en `user://ajustes.cfg` con `ConfigFile`.
 6. El botón de SMS abre la app de mensajes con el texto ya escrito mediante
    `OS.shell_open("sms:<numero>?body=...")`.
+
+**Monitoreo continuo mientras la app está abierta:** el proyecto usa *keep screen on* y el
+permiso `WAKE_LOCK` para que el procesador no entre en reposo profundo durante la vigilancia.
 
 ## Cómo abrirlo
 
@@ -52,17 +78,17 @@ arreglar (ver abajo).
 
 ## Dónde lo dejé
 
-Lo dejé justo cuando ya funcionaba la lógica y faltaba todo lo demás:
-
-- **No hay APK.** `export_presets.cfg` está, pero nunca se compiló ni se probó en un teléfono.
+- **No hay APK.** El preset de exportación está, pero nunca se compiló ni se probó en un teléfono.
 - **No se puede probar sin móvil.** No existe un modo de depuración que simule el acelerómetro.
 - **La calibración es a ojo.** `umbral = 3.0` y `duracion_minima = 0.10` los elegí sin medir
-  nada: ni una sola sacudida real registrada, ni datos de sismos para contrastar.
+  nada: ni una sola sacudida registrada, ni datos de sismos para contrastar.
 - **La etiqueta "Magnitud" engaña.** No es la magnitud de Richter: es la desviación de la
   aceleración respecto a `9.8 m/s²`, en `m/s²`. Un sismo de 4.0 y uno de 7.0 pueden mover tu
   teléfono exactamente igual.
-- **Sin monitoreo en segundo plano.** Si la app no está abierta (o Android la duerme), no
-  alerta nada. Falta un servicio en primer plano.
+- **No distingue falsos positivos.** Caminar o golpear la mesa dispara la alarma igual que un
+  sismo, porque no hay análisis de frecuencia.
+- **Sin monitoreo en segundo plano.** Con la pantalla apagada o la app cerrada, Android corta
+  la vigilancia: falta un Foreground Service nativo.
 - **El SMS no se envía solo.** Solo abre la app de mensajes con el texto escrito; el usuario
   tiene que pulsar enviar.
 - **Sin notificaciones ni permisos declarados** en el preset de export.
@@ -75,18 +101,50 @@ Lo dejé justo cuando ya funcionaba la lógica y faltaba todo lo demás:
 - **La fuente DS-DIGI es de uso personal.** Antes de distribuir el APK hay que revisar su
   licencia o cambiarla por una libre (Google Fonts).
 
+## Validación pendiente
+
+El informe deja diseñado el experimento, pero la tabla de resultados está vacía. Para llenarla
+de verdad hacen falta, como mínimo, 10–15 repeticiones por nivel de intensidad:
+
+1. **Mesa vibratoria casera** a distintas intensidades, midiendo cada repetición.
+2. **Instrumento de referencia** en paralelo (sensor calibrado u otra app certificada).
+3. **Pruebas de falsos positivos**: caminar, correr, dejar caer el celular, golpes accidentales.
+4. **Tabla del informe**: `N° prueba | intensidad aplicada | lectura app | lectura referencia | error (%)`.
+5. **Ajuste del umbral** con esos datos, y dejar registrado con qué criterio se eligió.
+
+Sin ese paso, cualquier afirmación sobre "segundos de anticipación" es una hipótesis, no un
+resultado.
+
+## Documentación del proyecto escolar
+
+El proyecto tiene un informe completo en formato FENCYT (Categoría E) que no vive en este
+repositorio, porque incluye datos personales del equipo. Contiene:
+
+- Contexto: Perú en el Cinturón de Fuego, límites de los sismógrafos, cobertura rural.
+- Marco científico: ondas P y S, acelerómetro MEMS, márgenes de error.
+- Descripción de la solución, requerimientos y materiales.
+- Diseño de la validación (mesa vibratoria, pruebas repetitivas, falsos positivos).
+- Implementación pantalla por pantalla.
+- **Limitaciones reconocidas** y trabajo futuro (Foreground Service, confirmación colaborativa
+  entre varios celulares al estilo MyShake).
+
+**Lo que falta en el informe:** resumen de 250 palabras, diagrama de flujo, cronograma, costos,
+capturas de pantalla del editor y del celular, tabla de validación con datos, bibliografía en
+APA 7 y anexos.
+
 ## Lista para retomar
 
 1. Modo debug: un `HSlider` que inyecte una magnitud falsa, para probar la alarma entera en PC.
 2. Exportar el APK y probarlo en un teléfono real durante una semana.
 3. Registrar las sacudidas en CSV y recalibrar el umbral con esos datos.
-4. Cambiar la etiqueta "Magnitud" por algo que no se confunda con la escala de Richter
+4. **Separar sismo de movimiento humano:** análisis de frecuencia (FFT) o detectar el patrón
+   de las ondas P. Es lo que convertiría esto en el proyecto que el informe describe.
+5. Cambiar la etiqueta "Magnitud" por algo que no se confunda con la escala de Richter
    (ej. "Sacudida: 3.2 m/s²").
-5. Notificación local + canal de Android, y servicio en primer plano para que no muera en
-   segundo plano.
-6. Envío automático del SMS (o al menos `SmsManager` en vez de `OS.shell_open`).
-7. Tests de la máquina de estados, sin necesidad de Godot.
-8. Renombrar assets y definir licencia del proyecto.
+6. Notificación local + canal de Android, y Foreground Service para que no muera en segundo plano.
+7. Envío automático del SMS (o al menos `SmsManager` en vez de `OS.shell_open`).
+8. Tests de la máquina de estados, sin necesidad de Godot.
+9. Renombrar assets y definir licencia del proyecto.
 
 ## Estructura
 
@@ -99,4 +157,12 @@ aero.gdshader      shader del fondo (estética Frutiger Aero)
 alert.wav          sirena
 ```
 
-Hecho por **Yeremi S. BΛSTIAN** — Quillabamba, Perú · [yeremisb.com](https://yeremisb.com)
+## Créditos
+
+Proyecto escolar de innovación tecnológica, FENCYT 2026 (Categoría E), de la **I.E.P. La Salle
+Quillabamba** (Quillabamba, Cusco, Perú), desarrollado por un equipo de cuatro estudiantes de
+4.º "B" con un docente asesor de Física. Los nombres completos del equipo y del asesor están en
+el informe del proyecto.
+
+Código y documentación técnica: **Yeremi S. BΛSTIAN** — Quillabamba, Perú ·
+[yeremisb.com](https://yeremisb.com)
