@@ -1,0 +1,182 @@
+[gd_scene format=3 uid="uid://be2lv3fbwu431"]
+
+[ext_resource type="Script" uid="uid://dx50854twdaaj" path="res://configuracion.gd" id="1_0vkon"]
+[ext_resource type="Shader" uid="uid://hv6prcmxshsx" path="res://aero.gdshader" id="1_vc56i"]
+[ext_resource type="FontFile" uid="uid://0ns3ssgus21d" path="res://DS-DIGI.TTF" id="2_rxvop"]
+[ext_resource type="FontFile" uid="uid://ca4co85lw6wc4" path="res://DS-DIGIT.TTF" id="3_6dg0v"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rxvop"]
+shader = ExtResource("1_vc56i")
+shader_parameter/blur_radius = 17.934000851865
+shader_parameter/depth_of_field = 0.3
+shader_parameter/glass_tint = Color(0, 0.4383026, 0.7281024, 0.9254902)
+shader_parameter/reflection_intensity = 1.8
+shader_parameter/bevel_strength = 0.5
+shader_parameter/chromatic_aberration = 0.015
+shader_parameter/corner_radius = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kj7vl"]
+shader = ExtResource("1_vc56i")
+shader_parameter/blur_radius = 15.1210007182475
+shader_parameter/depth_of_field = 0.3
+shader_parameter/glass_tint = Color(0.101960786, 0.7490196, 0.5254902, 0.4745098)
+shader_parameter/reflection_intensity = 1.8
+shader_parameter/bevel_strength = 0.5
+shader_parameter/chromatic_aberration = 0.015
+shader_parameter/corner_radius = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dlii7"]
+shader = ExtResource("1_vc56i")
+shader_parameter/blur_radius = 32.0
+shader_parameter/depth_of_field = 0.3
+shader_parameter/glass_tint = Color(0.61960787, 0.1882353, 0.21176471, 0.7176471)
+shader_parameter/reflection_intensity = 1.8
+shader_parameter/bevel_strength = 0.5
+shader_parameter/chromatic_aberration = 0.015
+shader_parameter/corner_radius = 0.5
+
+[node name="Control" type="Control" unique_id=303440856]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 573.6709
+offset_bottom = 393.4237
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.76994926, 0.7329867)
+script = ExtResource("1_0vkon")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=528378196]
+material = SubResource("ShaderMaterial_rxvop")
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -775.37585
+offset_top = -463.8556
+offset_right = 783.0172
+offset_bottom = 497.8775
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="ColorRect" unique_id=1022472545]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -565.0
+offset_top = 144.61383
+offset_right = 565.0
+offset_bottom = 265.61383
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_6dg0v")
+theme_override_font_sizes/font_size = 120
+text = "Numero de EMERGENCIA"
+
+[node name="InputNumero" type="LineEdit" parent="." unique_id=1848822152]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -415.75
+offset_top = -67.5
+offset_right = 415.75
+offset_bottom = 67.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/caret_color = Color(0.9490196, 0.9490196, 0.9490196, 0)
+theme_override_colors/selection_color = Color(0, 0, 0, 1)
+theme_override_colors/clear_button_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
+theme_override_colors/clear_button_color_pressed = Color(1, 1, 1, 0)
+theme_override_fonts/font = ExtResource("2_rxvop")
+theme_override_font_sizes/font_size = 80
+placeholder_text = "Numero"
+
+[node name="LabelConfirmacion" type="Label" parent="." unique_id=919644875]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -565.0
+offset_top = -202.12152
+offset_right = 565.0
+offset_bottom = -81.12152
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_6dg0v")
+theme_override_font_sizes/font_size = 80
+
+[node name="BotonGuardarNumero" type="Button" parent="." unique_id=2083232962]
+material = SubResource("ShaderMaterial_kj7vl")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.45532
+offset_top = 214.23859
+offset_right = 261.05615
+offset_bottom = 338.34186
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="BotonGuardarNumero" unique_id=2052416038]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_6dg0v")
+theme_override_font_sizes/font_size = 50
+text = "APLICAR CAMBIOS"
+
+[node name="BotonCerrar" type="Button" parent="." unique_id=1964180589]
+material = SubResource("ShaderMaterial_dlii7")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 619.52136
+offset_top = -448.8485
+offset_right = 720.35046
+offset_bottom = -345.1631
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="BotonCerrar" unique_id=872313411]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_6dg0v")
+theme_override_font_sizes/font_size = 70
+text = "X"
+
+[connection signal="pressed" from="BotonGuardarNumero" to="." method="_on_boton_guardar_numero_pressed"]
+[connection signal="pressed" from="BotonCerrar" to="." method="_on_boton_cerrar_pressed"]

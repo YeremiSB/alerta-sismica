@@ -1,0 +1,299 @@
+[gd_scene format=3 uid="uid://ipvh6saa5533"]
+
+[ext_resource type="Script" uid="uid://bva2f42bm5a1k" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://dxnct5w32mm3g" path="res://1000055564.jpeg" id="2_7mycd"]
+[ext_resource type="FontFile" uid="uid://ca4co85lw6wc4" path="res://DS-DIGIT.TTF" id="3_1bvp3"]
+[ext_resource type="Shader" uid="uid://hv6prcmxshsx" path="res://aero.gdshader" id="3_h2yge"]
+[ext_resource type="FontFile" uid="uid://0ns3ssgus21d" path="res://DS-DIGI.TTF" id="3_lquwl"]
+[ext_resource type="PackedScene" uid="uid://be2lv3fbwu431" path="res://configuracion.tscn" id="6_7mycd"]
+[ext_resource type="AudioStream" uid="uid://b8hivvell73s5" path="res://alert.wav" id="6_272bh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1bvp3"]
+shader = ExtResource("3_h2yge")
+shader_parameter/blur_radius = 64.0
+shader_parameter/depth_of_field = 0.05600000266
+shader_parameter/glass_tint = Color(0, 0.3137255, 0.5372549, 1)
+shader_parameter/reflection_intensity = 0.2790000132525
+shader_parameter/bevel_strength = 0.0
+shader_parameter/chromatic_aberration = 0.05000000074506
+shader_parameter/corner_radius = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h2yge"]
+shader = ExtResource("3_h2yge")
+shader_parameter/blur_radius = 64.0
+shader_parameter/depth_of_field = 0.254000012065
+shader_parameter/glass_tint = Color(0.69803923, 0.8509804, 1, 0.49411765)
+shader_parameter/reflection_intensity = 0.8390000398525
+shader_parameter/bevel_strength = 0.374000017765
+shader_parameter/chromatic_aberration = 0.014000000665
+shader_parameter/corner_radius = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lquwl"]
+shader = ExtResource("3_h2yge")
+shader_parameter/blur_radius = 64.0
+shader_parameter/depth_of_field = 0.254000012065
+shader_parameter/glass_tint = Color(4.5242905e-06, 0.4982211, 0.8232208, 0.6862745)
+shader_parameter/reflection_intensity = 0.8390000398525
+shader_parameter/bevel_strength = 0.374000017765
+shader_parameter/chromatic_aberration = 0.014000000665
+shader_parameter/corner_radius = 0.0
+
+[sub_resource type="FontFile" id="FontFile_1bvp3"]
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/50/0/ascent = 0.0
+cache/0/50/0/descent = 0.0
+cache/0/50/0/underline_position = 0.0
+cache/0/50/0/underline_thickness = 0.0
+cache/0/50/0/scale = 1.0
+cache/0/80/0/ascent = 0.0
+cache/0/80/0/descent = 0.0
+cache/0/80/0/underline_position = 0.0
+cache/0/80/0/underline_thickness = 0.0
+cache/0/80/0/scale = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7mycd"]
+shader = ExtResource("3_h2yge")
+shader_parameter/blur_radius = 32.0
+shader_parameter/depth_of_field = 0.3
+shader_parameter/glass_tint = Color(0.7, 0.85, 1, 0.25)
+shader_parameter/reflection_intensity = 1.8
+shader_parameter/bevel_strength = 0.5
+shader_parameter/chromatic_aberration = 0.015
+shader_parameter/corner_radius = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_272bh"]
+shader = ExtResource("3_h2yge")
+shader_parameter/blur_radius = 32.0
+shader_parameter/depth_of_field = 0.3
+shader_parameter/glass_tint = Color(0.5411765, 0.77254903, 1, 0.4745098)
+shader_parameter/reflection_intensity = 1.8
+shader_parameter/bevel_strength = 0.5
+shader_parameter/chromatic_aberration = 0.015
+shader_parameter/corner_radius = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lquwl"]
+bg_color = Color(0.1254902, 0.40784314, 0.7176471, 0.7176471)
+
+[node name="Node2D" type="Control" unique_id=133013562]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0xm2m")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1428123889]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 10.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_7mycd")
+
+[node name="BarraApp" type="ColorRect" parent="." unique_id=548885159]
+material = SubResource("ShaderMaterial_1bvp3")
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 154.0
+grow_horizontal = 2
+color = Color(0, 0.45882353, 0.78039217, 1)
+
+[node name="BarraApp2" type="ColorRect" parent="." unique_id=1118970525]
+material = SubResource("ShaderMaterial_h2yge")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -658.5
+offset_top = -257.0
+offset_right = 658.5
+offset_bottom = 257.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.45882353, 0.78039217, 1)
+
+[node name="BarraApp3" type="ColorRect" parent="BarraApp2" unique_id=1223875830]
+material = SubResource("ShaderMaterial_lquwl")
+custom_minimum_size = Vector2(1000, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -35.0
+offset_right = 500.0
+offset_bottom = 141.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.45882353, 0.78039217, 1)
+
+[node name="LabelEstado" type="Label" parent="." unique_id=1372312972]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -169.5
+offset_top = -132.5
+offset_right = 169.5
+offset_bottom = -71.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_lquwl")
+theme_override_font_sizes/font_size = 80
+text = "MONITOREANDO"
+
+[node name="Barra" type="Label" parent="." unique_id=723793689]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -234.0
+offset_top = 20.0
+offset_right = 234.0
+offset_bottom = 89.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.53943497, 0.85328937, 0.99999994, 1)
+theme_override_fonts/font = SubResource("FontFile_1bvp3")
+theme_override_font_sizes/font_size = 80
+text = "Sismo Alerta Android"
+
+[node name="LabelMagnitud" type="Label" parent="." unique_id=1844411013]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -446.5
+offset_top = -19.5
+offset_right = 446.5
+offset_bottom = 161.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_1bvp3")
+theme_override_font_sizes/font_size = 150
+text = "MAGNITUD: X.xx"
+horizontal_alignment = 1
+
+[node name="BotonSMS" type="Button" parent="." unique_id=1398964434]
+material = SubResource("ShaderMaterial_7mycd")
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -404.75
+offset_top = -228.5
+offset_right = 404.75
+offset_bottom = -54.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="BotonSMS" unique_id=1712952732]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_1bvp3")
+theme_override_font_sizes/font_size = 50
+text = "ENVIAR MENSAJE DE TEXTO"
+
+[node name="BotonConfig" type="Button" parent="." unique_id=963157265]
+material = SubResource("ShaderMaterial_7mycd")
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -136.0
+offset_top = 25.0
+offset_right = -35.0
+offset_bottom = 125.0
+grow_horizontal = 0
+
+[node name="Label" type="Label" parent="BotonConfig" unique_id=1393886135]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_1bvp3")
+theme_override_font_sizes/font_size = 50
+text = "⚙"
+
+[node name="BarraVibracion" type="ProgressBar" parent="." unique_id=1046325551]
+material = SubResource("ShaderMaterial_272bh")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -290.5
+offset_top = 167.5
+offset_right = 290.5
+offset_bottom = 206.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_lquwl")
+show_percentage = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=396009344]
+stream = ExtResource("6_272bh")
+
+[node name="Configuracion" parent="." unique_id=303440856 instance=ExtResource("6_7mycd")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -143.41772
+offset_top = -98.35593
+offset_right = 143.41772
+offset_bottom = 98.35593
+
+[connection signal="pressed" from="BotonConfig" to="." method="_on_boton_config_pressed"]
