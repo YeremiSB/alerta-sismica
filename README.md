@@ -118,7 +118,8 @@ resultado.
 ## Documentación del proyecto escolar
 
 El proyecto tiene un informe completo en formato FENCYT (Categoría E) que no vive en este
-repositorio, porque incluye datos personales del equipo. Contiene:
+repositorio, porque incluye datos personales de quienes figuran en la inscripción del concurso.
+Contiene:
 
 - Contexto: Perú en el Cinturón de Fuego, límites de los sismógrafos, cobertura rural.
 - Marco científico: ondas P y S, acelerómetro MEMS, márgenes de error.
@@ -159,10 +160,11 @@ alert.wav          sirena
 
 ## Créditos
 
-Proyecto escolar de innovación tecnológica, FENCYT 2026 (Categoría E), de la **I.E.P. La Salle
-Quillabamba** (Quillabamba, Cusco, Perú), desarrollado por un equipo de cuatro estudiantes de
-4.º "B" con un docente asesor de Física. Los nombres completos del equipo y del asesor están en
-el informe del proyecto.
+Código, interfaz, shader y documentación técnica: **Yeremi S. BΛSTIAN**.
 
-Código y documentación técnica: **Yeremi S. BΛSTIAN** — Quillabamba, Perú ·
-[yeremisb.com](https://yeremisb.com)
+El proyecto se presentó en **FENCYT 2026 (Categoría E)** como trabajo de la **I.E.P. La Salle
+Quillabamba** (Quillabamba, Cusco, Perú). Esa categoría del concurso se inscribe por equipos y
+con docente asesor, así que la ficha oficial lista al equipo de 4.º "B" y al asesor; el
+desarrollo que está en este repositorio es mío.
+
+[yeremisb.com](https://yeremisb.com) · Quillabamba, Perú
