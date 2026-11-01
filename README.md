@@ -1,4 +1,4 @@
-#**Seismic Alert**
+#Seismic Alert
 
 An Android app built with Godot 4 that uses the phone's accelerometer to detect shaking. When the measured magnitude exceeds a threshold, an alarm sounds, the phone vibrates, and a button appears allowing the user to send an SMS notification to a saved contact.
 
